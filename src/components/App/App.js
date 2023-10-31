@@ -107,7 +107,7 @@ export default class App extends Component {
       <div className="app">
         <section className="todoapp">
           <header className="header">
-            <h1>todos2</h1>
+            <h1>todos</h1>
             <NewTaskForm className="new-todo" placeholder="What needs to be done?" submitNewTask={this.addNewTask} />
           </header>
           <section className="main">
