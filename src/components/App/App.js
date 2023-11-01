@@ -16,7 +16,6 @@ export default class App extends Component {
 
   createItem = (label) => ({
     label,
-    // eslint-disable-next-line no-plusplus
     id: this.keysId++,
     done: false,
     editing: false,
@@ -52,8 +51,7 @@ export default class App extends Component {
     })
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  toggleProperty = (id, arr, propName) => {
+  static toggleProperty = (id, arr, propName) => {
     const idx = arr.findIndex((todo) => todo.id === id)
     const oldItem = arr[idx]
     const editedItem = {
