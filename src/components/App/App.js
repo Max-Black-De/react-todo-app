@@ -11,7 +11,22 @@ export default class App extends Component {
   keysId = 777
 
   state = {
-    tasks: [],
+    tasks: [
+      // {
+      // label,
+      // id: 777,
+      // done: false,
+      // editing: false,
+      // date: new Date()
+      // },
+      // {
+      // label,
+      // id: 778,
+      // done: false,
+      // editing: false,
+      // date: new Date()
+      // }
+    ],
     status: 'active',
   }
 

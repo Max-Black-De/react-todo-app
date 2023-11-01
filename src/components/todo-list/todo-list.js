@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { PropTypes } from 'prop-types'
@@ -34,7 +33,7 @@ function TodoList({ editItem, tasksData, onDoneItem, addItemClass, onDeleteItem 
 
 TodoList.propTypes = {
   editItem: PropTypes.func.isRequired,
-  // tasksData: PropTypes.arrayOf.isRequired,
+  tasksData: PropTypes.arrayOf.isRequired,
   onDoneItem: PropTypes.func.isRequired,
   addItemClass: PropTypes.func.isRequired,
   onDeleteItem: PropTypes.func.isRequired,
