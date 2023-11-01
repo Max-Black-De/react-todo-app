@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { PropTypes } from 'prop-types'
@@ -33,7 +31,7 @@ export default class TodoListItem extends Component {
     return (
       <li className={liClassName}>
         <div className="view">
-          <input type="checkbox" className="toggle" onChange={onDoneItem} />
+          <input type="checkbox" className="toggle" onChange={onDoneItem} checked={done} />
           <label>
             <span className="description">{label}</span>
             <span className="created">{`Created ${formatDistanceToNow(
@@ -42,8 +40,14 @@ export default class TodoListItem extends Component {
               { addSuffix: true }
             )}`}</span>
           </label>
-          <button disabled={done} type="button" onClick={this.onHandleClick} className="icon icon-edit" />
-          <button type="button" onClick={onDeleteItem} className="icon icon-destroy" />
+          <button
+            disabled={done}
+            type="button"
+            onClick={this.onHandleClick}
+            className="icon icon-edit"
+            aria-label="Edit"
+          />
+          <button type="button" onClick={onDeleteItem} className="icon icon-destroy" aria-label="Delete" />
         </div>
         <form onSubmit={this.submitHandler}>
           <input type="text" className="edit" name="editedTask" defaultValue={label} contentEditable="true" />

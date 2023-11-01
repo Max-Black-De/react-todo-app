@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { Component } from 'react'
 
 import NewTaskForm from '../new-task-form'
@@ -11,22 +10,7 @@ export default class App extends Component {
   keysId = 777
 
   state = {
-    tasks: [
-      // {
-      // label,
-      // id: 777,
-      // done: false,
-      // editing: false,
-      // date: new Date()
-      // },
-      // {
-      // label,
-      // id: 778,
-      // done: false,
-      // editing: false,
-      // date: new Date()
-      // }
-    ],
+    tasks: [],
     status: 'active',
   }
 
