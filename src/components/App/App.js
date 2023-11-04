@@ -51,7 +51,8 @@ export default class App extends Component {
     })
   }
 
-  static toggleProperty = (id, arr, propName) => {
+  // eslint-disable-next-line class-methods-use-this
+  toggleProperty = (id, arr, propName) => {
     const idx = arr.findIndex((todo) => todo.id === id)
     const oldItem = arr[idx]
     const editedItem = {
