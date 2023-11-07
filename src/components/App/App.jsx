@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react'
 import uuid from 'react-uuid'
 
@@ -13,7 +14,6 @@ export default class App extends Component {
     status: 'active',
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createItem = (label) => ({
     label,
     id: uuid(),
@@ -51,7 +51,6 @@ export default class App extends Component {
     })
   }
 
-  // eslint-disable-next-line class-methods-use-this
   toggleProperty = (id, arr, propName) => {
     const idx = arr.findIndex((todo) => todo.id === id)
     const oldItem = arr[idx]
