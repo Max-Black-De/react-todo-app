@@ -41,6 +41,10 @@
         "semi": ["error", "never"],
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0,
+        "import/prefer-default-export": [
+            "off",
+            { "target": "single" }
+        ],
         "import/no-unresolved": [2, { "caseSensitive": false }],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "prettier/prettier": [

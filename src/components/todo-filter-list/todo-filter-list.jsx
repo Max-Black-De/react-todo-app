@@ -1,13 +1,14 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import uuid from 'react-uuid'
 
 import './todo-filter-list.css'
 
 function TodoFilterList({ sortTasks, currentStatus }) {
-  let filterId = 111
   const filterLabels = ['All', 'Active', 'Completed']
   const button = filterLabels.map((label) => (
-    <li key={filterId++}>
+    <li key={uuid()}>
       <button
         type="button"
         className={currentStatus === label ? 'selected' : ''}

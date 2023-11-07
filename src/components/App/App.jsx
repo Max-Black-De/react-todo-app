@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
+import uuid from 'react-uuid'
 
-import NewTaskForm from '../new-task-form'
-import TodoList from '../todo-list'
-import TodoFooter from '../todo-footer'
+import { NewTaskForm } from '../new-task-form'
+import { TodoList } from '../todo-list'
+import { TodoFooter } from '../todo-footer'
 
 import './App.css'
 
 export default class App extends Component {
-  keysId = 777
-
   state = {
     tasks: [],
     status: 'active',
   }
 
+  // eslint-disable-next-line class-methods-use-this
   createItem = (label) => ({
     label,
-    id: this.keysId++,
+    id: uuid(),
     done: false,
     editing: false,
     date: new Date(),

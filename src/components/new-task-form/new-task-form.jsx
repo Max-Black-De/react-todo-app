@@ -4,18 +4,15 @@ import { PropTypes } from 'prop-types'
 import './new-task-form.css'
 
 function NewTaskForm({ className, placeholder, submitNewTask }) {
-  const onSubmit = (e) => {
-    e.preventDefault()
-    if (e.target.newTask.value.trim() !== '') {
-      submitNewTask(e.target.newTask.value)
-      e.target.newTask.value = ''
+  const onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      if (e.target.value.trim() !== '') {
+        submitNewTask(e.target.value)
+        e.target.value = ''
+      }
     }
   }
-  return (
-    <form onSubmit={onSubmit}>
-      <input name="newTask" className={className} placeholder={placeholder} />
-    </form>
-  )
+  return <input name="newTask" className={className} onKeyDown={onKeyDown} placeholder={placeholder} />
 }
 
 NewTaskForm.propTypes = {

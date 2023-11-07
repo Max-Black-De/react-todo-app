@@ -1,7 +1,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
-import TodoListItem from '../todo-list-item'
+import { TodoListItem } from '../todo-list-item'
 
 import './todo-list.css'
 
