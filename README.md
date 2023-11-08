@@ -1,6 +1,6 @@
 # Link to the To-Do application to pass React Unit 1
 
-[react-todo-app-kata.vercel.app](https://github.com/Max-Black-De/react-todo-app-kata)
+Open [https://react-todo-app-kata-644b7n0n3-max-black-des-projects.vercel.app]
 
 # Getting Started with Create React App
 
