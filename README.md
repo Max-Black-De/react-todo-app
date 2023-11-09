@@ -1,6 +1,6 @@
 # Link to the To-Do application to pass React Unit 1
 
-[Open link for review my app](https://react-todo-app-kata-644b7n0n3-max-black-des-projects.vercel.app)
+[Open link to review my app](https://react-todo-app-kata.vercel.app)
 
 # Getting Started with Create React App
 
