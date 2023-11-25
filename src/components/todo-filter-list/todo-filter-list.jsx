@@ -21,6 +21,7 @@ function TodoFilterList({ sortTasks, currentStatus }) {
 
   return <ul className="filters">{button}</ul>
 }
+
 TodoFilterList.propDefault = {
   currentStatus: 'active',
 }
