@@ -1,18 +1,23 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { PropTypes } from 'prop-types'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import uuid from 'react-uuid'
 
 import './todo-filter-list.css'
 
-function TodoFilterList({ sortTasks, currentStatus }) {
+function TodoFilterList({ setTaskStatus, currentStatus }) {
+  const onChangeTaskStatus = (e) => {
+    const status = e.target.innerText
+    setTaskStatus(status)
+  }
   const filterLabels = ['All', 'Active', 'Completed']
   const button = filterLabels.map((label) => (
     <li key={uuid()}>
       <button
         type="button"
         className={currentStatus === label ? 'selected' : ''}
-        onClick={(e) => sortTasks(e.target.innerText)}
+        onClick={(e) => onChangeTaskStatus(e)}
       >
         {label}
       </button>
@@ -23,12 +28,11 @@ function TodoFilterList({ sortTasks, currentStatus }) {
 }
 
 TodoFilterList.propDefault = {
-  currentStatus: 'active',
+  currentStatus: 'All',
 }
 
 TodoFilterList.propTypes = {
-  sortTasks: PropTypes.func.isRequired,
-  currentStatus: PropTypes.oneOf(['active', 'All', 'Active', 'Completed']).isRequired,
+  currentStatus: PropTypes.oneOf(['All', 'Active', 'Completed']).isRequired,
 }
 
 export default TodoFilterList

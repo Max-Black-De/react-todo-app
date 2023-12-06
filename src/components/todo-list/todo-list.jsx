@@ -6,15 +6,6 @@ import { TodoListItem } from '../todo-list-item'
 import './todo-list.css'
 
 function TodoList({ sortedTasksData, setTasksData }) {
-  // label,
-  // minutes,
-  // seconds,
-  // id: uuid(),
-  // done: false,
-  // editing: false,
-  // isPlay: true,
-  // date: new Date(),
-
   const onToggleProperty = (tasksArr, id, property) => {
     const newTasksArr = tasksArr.map((task) => {
       if (task.id === id) {

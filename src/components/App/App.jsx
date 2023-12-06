@@ -1,10 +1,4 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-undef */
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
-/* eslint-disable class-methods-use-this */
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { NewTaskForm } from '../new-task-form'
 import { TodoList } from '../todo-list'
@@ -13,10 +7,9 @@ import './App.css'
 
 const filterTasks = (tasksData, taskStatus) => {
   if (taskStatus !== 'All') {
-    const newTasksData = tasksData.filter((el) => {
-      if(taskStatus === 'Completed')
-        return el.done
-      return !el.done
+    const newTasksData = tasksData.filter((task) => {
+      if (taskStatus === 'Completed') return task.done
+      return !task.done
     })
     return newTasksData
   }
@@ -28,14 +21,6 @@ function App() {
   const [taskStatus, setTaskStatus] = useState('All')
   const activeCounter = tasksData.filter((el) => !el.done).length
   const filteredTasks = filterTasks(tasksData, taskStatus)
-  // useEffect(() => {
-  //   console.log(tasksData)
-  //   console.log(taskStatus)
-  //   console.log(activeCounter)
-  // })
-  // console.log(tasksData)
-
-
 
   return (
     <div className="app">
@@ -45,14 +30,11 @@ function App() {
           <NewTaskForm setTasksData={setTasksData} />
         </header>
         <section className="main">
-          <TodoList
-            sortedTasksData={filteredTasks}
-            setTasksData={setTasksData}
-          />
+          <TodoList sortedTasksData={filteredTasks} setTasksData={setTasksData} />
           <TodoFooter
             currentStatus={taskStatus}
-            // clearCompleted={this.clearCompleted}
-            filterTasks={filterTasks}
+            setTasksData={setTasksData}
+            setTaskStatus={setTaskStatus}
             activeCounter={activeCounter}
           />
         </section>

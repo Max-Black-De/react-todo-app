@@ -1,3 +1,7 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
+/* eslint-disable prettier/prettier */
 import React from 'react'
 import { PropTypes } from 'prop-types'
 
@@ -5,12 +9,19 @@ import { TodoFilterList } from '../todo-filter-list'
 
 import './todo-footer.css'
 
-function TodoFooter({ activeCounter, clearCompleted, filterTasks, currentStatus }) {
+function TodoFooter({ setTasksData, setTaskStatus, activeCounter, currentStatus }) {
+  const onClearCompleted = (e) => {
+    setTasksData((tasksData) => tasksData.filter(task => !task.done))
+  }
+  
   return (
     <footer className="footer">
       <span className="todo-count">{activeCounter} items left</span>
-      <TodoFilterList currentStatus={currentStatus} sortTasks={filterTasks} />
-      <button type="button" className="clear-completed" onClick={clearCompleted}>
+      <TodoFilterList
+        currentStatus={currentStatus}
+        setTaskStatus={setTaskStatus}
+      />
+      <button type="button" className="clear-completed" onClick={(e) => onClearCompleted(e)}>
         Clear completed
       </button>
     </footer>
@@ -19,8 +30,6 @@ function TodoFooter({ activeCounter, clearCompleted, filterTasks, currentStatus 
 
 TodoFooter.propTypes = {
   activeCounter: PropTypes.number.isRequired,
-  clearCompleted: PropTypes.func.isRequired,
-  filterTasks: PropTypes.func.isRequired,
   currentStatus: PropTypes.string.isRequired,
 }
 

@@ -1,22 +1,27 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-debugger */
-/* eslint-disable react/no-unused-class-component-methods */
-/* eslint-disable prettier/prettier */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import classNames from 'classnames'
+// eslint-disable-next-line no-unused-vars
 import { PropTypes } from 'prop-types'
 
 import './todo-list-item.css'
 
 function TodoListItem(props) {
-  const { label, minutes, seconds, done, editing, date, id, onEditItem, onKeyDown, onToggleDone, onToggleEdit, onDeleteItem } = props
-  // eslint-disable-next-line object-shorthand
-  const liClassName = classNames({ completed: done, editing: editing })
+  const {
+    label,
+    minutes,
+    seconds,
+    done,
+    editing,
+    date,
+    id,
+    onEditItem,
+    onKeyDown,
+    onToggleDone,
+    onToggleEdit,
+    onDeleteItem,
+  } = props
+  const liClassName = classNames({ completed: done, editing })
 
   return (
     <li className={liClassName}>
@@ -29,13 +34,9 @@ function TodoListItem(props) {
             <button type="button" aria-label="Pause" className="icon icon-pause" />
             {`${minutes}:${seconds}`}
           </span>
-          {/* <span className="description">
-            {`Created ${formatDistanceToNow(
-              date,
-              { includeSeconds: true },
-              { addSuffix: true }
-            )}`}
-          </span> */}
+          <span className="description">
+            {`Created ${formatDistanceToNow(date, { includeSeconds: true }, { addSuffix: true })}`}
+          </span>
         </label>
         <button
           type="button"
@@ -47,22 +48,35 @@ function TodoListItem(props) {
         />
         <button type="button" onClick={() => onDeleteItem(id)} className="icon icon-destroy" aria-label="Delete" />
       </div>
-      <input onChange={(e) => onEditItem(e, id)} onKeyDown={(e)=> onKeyDown(e, id)} type="text" className="edit" name="editedTask" defaultValue={label} contentEditable="true" />
+      <input
+        onChange={(e) => onEditItem(e, id)}
+        onKeyDown={(e) => onKeyDown(e, id)}
+        type="text"
+        className="edit"
+        name="editedTask"
+        defaultValue={label}
+        contentEditable="true"
+      />
     </li>
   )
-
 }
 export default TodoListItem
 
-// TodoListItem.defaultProps = {
-//     done: false,
-//     editing: false,
-//   }
-// TodoListItem.propTypes = {
-//     label: PropTypes.string.isRequired,
-//     done: PropTypes.bool,
-//     editing: PropTypes.bool,
-//     onDoneItem: PropTypes.func.isRequired,
-//     onDeleteItem: PropTypes.func.isRequired,
-//     date: PropTypes.instanceOf(Date).isRequired,
-//   }
+TodoListItem.defaultProps = {
+  done: false,
+  editing: false,
+}
+TodoListItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  minutes: PropTypes.string.isRequired,
+  seconds: PropTypes.string.isRequired,
+  done: PropTypes.bool,
+  editing: PropTypes.bool,
+  date: PropTypes.instanceOf(Date).isRequired,
+  id: PropTypes.string.isRequired,
+  onEditItem: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+  onToggleDone: PropTypes.func.isRequired,
+  onToggleEdit: PropTypes.func.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
+}
