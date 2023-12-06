@@ -5,11 +5,11 @@ import { TodoFilterList } from '../todo-filter-list'
 
 import './todo-footer.css'
 
-function TodoFooter({ footerSpanCounter, clearCompleted, sortTasks, currentStatus }) {
+function TodoFooter({ activeCounter, clearCompleted, filterTasks, currentStatus }) {
   return (
     <footer className="footer">
-      <span className="todo-count">{footerSpanCounter} items left</span>
-      <TodoFilterList currentStatus={currentStatus} sortTasks={sortTasks} />
+      <span className="todo-count">{activeCounter} items left</span>
+      <TodoFilterList currentStatus={currentStatus} sortTasks={filterTasks} />
       <button type="button" className="clear-completed" onClick={clearCompleted}>
         Clear completed
       </button>
@@ -18,9 +18,9 @@ function TodoFooter({ footerSpanCounter, clearCompleted, sortTasks, currentStatu
 }
 
 TodoFooter.propTypes = {
-  footerSpanCounter: PropTypes.number.isRequired,
+  activeCounter: PropTypes.number.isRequired,
   clearCompleted: PropTypes.func.isRequired,
-  sortTasks: PropTypes.func.isRequired,
+  filterTasks: PropTypes.func.isRequired,
   currentStatus: PropTypes.string.isRequired,
 }
 

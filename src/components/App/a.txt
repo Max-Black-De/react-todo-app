@@ -1,0 +1,98 @@
+addNewTask = (task) => {
+    this.setState(({ tasks }) => ({
+      tasks: [...tasks, task],
+    }))
+  }
+
+editItem = (value, id) => {
+  this.setState(({ tasks }) => {
+    const idx = tasks.findIndex((todo) => todo.id === id)
+    const oldItem = tasks[idx]
+    const editedItem = { ...oldItem, label: value }
+
+    return {
+      tasks: [...tasks.slice(0, idx), editedItem, ...tasks.slice(idx + 1)],
+    }
+  })
+}
+
+
+deleteItem = (id) => {
+  this.setState(({ tasks }) => {
+    const idx = tasks.findIndex((todo) => todo.id === id)
+
+    return {
+      tasks: [...tasks.slice(0, idx), ...tasks.slice(idx + 1)],
+    }
+  })
+}
+
+toggleProperty = (id, arr, propName) => {
+  const idx = arr.findIndex((todo) => todo.id === id)
+  const oldItem = arr[idx]
+  const editedItem = {
+    ...oldItem,
+    [propName]: !oldItem[propName],
+  }
+
+  return [...arr.slice(0, idx), editedItem, ...arr.slice(idx + 1)]
+}
+
+onToggleDone = (id) => {
+  this.setState(({ tasks }) => ({
+    tasks: this.toggleProperty(id, tasks, 'done'),
+  }))
+}
+
+onToggleEditing = (id) => {
+  this.setState(({ tasks }) => ({
+    tasks: this.toggleProperty(id, tasks, 'editing'),
+  }))
+  console.log('Played: ', id)
+}
+
+onTogglePlay = (id) => {
+  const { tasks } = this.state
+  const idx = tasks.findIndex((task) => task.id === id)
+  const oldPlayItem = tasks[idx]
+  const editedPlayItem = {
+    ...oldPlayItem,
+    isPlay: true,
+  }
+  return [...tasks.slice(0, idx), editedPlayItem, ...tasks.slice(idx + 1)]
+}
+
+onTogglePause = (id) => {
+  const { tasks } = this.state
+  const idx = tasks.findIndex((task) => task.id === id)
+  const oldPlayItem = tasks[idx]
+  const editedPlayItem = {
+    ...oldPlayItem,
+    isPlay: false,
+  }
+  console.log(editedPlayItem)
+  return [...tasks.slice(0, idx), editedPlayItem, ...tasks.slice(idx + 1)]
+}
+
+clearCompleted = () => {
+  this.setState(({ tasks }) => ({
+    tasks: tasks.filter((t) => !t.done),
+  }))
+}
+
+getTasks = () => {
+  const { tasks, status } = this.state
+  if (status === 'Active') {
+    return tasks.filter((t) => !t.done)
+  }
+  if (status === 'Completed') {
+    return tasks.filter((t) => t.done)
+  }
+  return tasks
+}
+
+sortTasks = (status) => {
+  this.setState(() => ({
+    status,
+  }))
+}
