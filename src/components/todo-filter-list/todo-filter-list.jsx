@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import uuid from 'react-uuid'
@@ -23,7 +21,6 @@ function TodoFilterList({ setTaskStatus, currentStatus }) {
       </button>
     </li>
   ))
-
   return <ul className="filters">{button}</ul>
 }
 
@@ -32,6 +29,7 @@ TodoFilterList.propDefault = {
 }
 
 TodoFilterList.propTypes = {
+  setTaskStatus: PropTypes.func.isRequired,
   currentStatus: PropTypes.oneOf(['All', 'Active', 'Completed']).isRequired,
 }
 

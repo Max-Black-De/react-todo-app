@@ -1,5 +1,5 @@
 import React from 'react'
-// import { PropTypes } from 'prop-types'
+import { PropTypes } from 'prop-types'
 
 import { TodoListItem } from '../todo-list-item'
 
@@ -62,12 +62,9 @@ function TodoList({ sortedTasksData, setTasksData }) {
   return <ul className="todo-list">{items}</ul>
 }
 
-// TodoList.propTypes = {
-//   editItem: PropTypes.func.isRequired,
-//   tasksData: PropTypes.arrayOf.isRequired,
-//   onDoneItem: PropTypes.func.isRequired,
-//   addItemClass: PropTypes.func.isRequired,
-//   onDeleteItem: PropTypes.func.isRequired,
-// }
+TodoList.propTypes = {
+  setTasksData: PropTypes.func.isRequired,
+  sortedTasksData: PropTypes.arrayOf.isRequired,
+}
 
 export default TodoList
