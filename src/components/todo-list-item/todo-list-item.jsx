@@ -21,9 +21,10 @@ function TodoListItem(props) {
     onDeleteItem,
     setTasksData,
   } = props
+
   const liClassName = classNames({ completed: done, editing })
   const totalSeconds = Number(minutes) * 60 + Number(seconds)
-  const [isPlay, setIsPlay] = useState(false)
+  const [isPlay, setIsPlay] = useState('pause')
   const [timeLeft, setTimeLeft] = useState(totalSeconds)
   const decrementedSeconds = timeLeft
   const setUpdatedTime = (tasksData, min, sec) =>
@@ -46,15 +47,16 @@ function TodoListItem(props) {
   }
 
   useEffect(() => {
+    console.log(isPlay)
     const intervalId = setInterval(() => {
-      if (isPlay) {
+      if (isPlay && isPlay !== 'pause') {
         setTimeLeft((time) => (time >= 1 ? time - 1 : 0))
       }
       transformToMinSec(decrementedSeconds)
     }, 1000)
 
     if (timeLeft === 0 || done) {
-      setIsPlay(false)
+      setIsPlay('pause')
     }
     return () => {
       clearInterval(intervalId)
@@ -68,8 +70,8 @@ function TodoListItem(props) {
         <label>
           <span className="title">{label}</span>
           <span className="description">
-            <button type="button" aria-label="Play" onClick={() => setIsPlay(true)} className="icon   icon-play" />
-            <button type="button" aria-label="Pause" onClick={() => setIsPlay(false)} className="icon icon-pause" />
+            <button type="button" aria-label="Play" onClick={() => setIsPlay('play')} className="icon   icon-play" />
+            <button type="button" aria-label="Pause" onClick={() => setIsPlay('pause')} className="icon icon-pause" />
             {`${modernTime(minutes)}:${modernTime(seconds)}`}
           </span>
           <span className="description">
