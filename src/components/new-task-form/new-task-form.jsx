@@ -1,16 +1,12 @@
-/* eslint-disable no-debugger */
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import uuid from 'react-uuid'
-
-// import { PropTypes } from 'prop-types'
+import { PropTypes } from 'prop-types'
 
 import './new-task-form.css'
 
-function createTask(label, minutes, seconds) {
-  // const min = Number(minutes)
-  // const sec = Number(seconds)
+function createTask(label, min, sec) {
+  const minutes = Number(min)
+  const seconds = Number(sec)
 
   return {
     label,
@@ -30,7 +26,7 @@ function NewTaskForm({ setTasksData }) {
   const [seconds, setSeconds] = useState('')
 
   const onSetTasksData = (text, min, sec) => {
-    setTasksData(tasksData => [...tasksData,  createTask(text, min, sec)])
+    setTasksData((tasksData) => [...tasksData, createTask(text, min, sec)])
   }
 
   const onSetTask = (e) => {
@@ -100,6 +96,6 @@ function NewTaskForm({ setTasksData }) {
 
 export default NewTaskForm
 
-// NewTaskForm.propTypes = {
-//   submitNewTask: PropTypes.func.isRequired,
-// }
+NewTaskForm.propTypes = {
+  setTasksData: PropTypes.func.isRequired,
+}

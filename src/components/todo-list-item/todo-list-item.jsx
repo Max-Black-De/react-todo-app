@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import classNames from 'classnames'
-// eslint-disable-next-line no-unused-vars
 import { PropTypes } from 'prop-types'
 
 import './todo-list-item.css'
@@ -20,8 +19,47 @@ function TodoListItem(props) {
     onToggleDone,
     onToggleEdit,
     onDeleteItem,
+    setTasksData,
   } = props
   const liClassName = classNames({ completed: done, editing })
+  const totalSeconds = Number(minutes) * 60 + Number(seconds)
+  const [isPlay, setIsPlay] = useState(false)
+  const [timeLeft, setTimeLeft] = useState(totalSeconds)
+  const decrementedSeconds = timeLeft
+  const setUpdatedTime = (tasksData, min, sec) =>
+    tasksData.map((task) => {
+      if (task.id === id) {
+        return { ...task, minutes: min, seconds: sec }
+      }
+      return task
+    })
+  const transformToMinSec = (result) => {
+    const min = Math.trunc(result / 60)
+    const sec = result - min * 60
+    setTasksData((tasksData) => setUpdatedTime(tasksData, min, sec))
+  }
+  const modernTime = (value) => {
+    if (value <= 9) {
+      return `0${value}`
+    }
+    return value
+  }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (isPlay) {
+        setTimeLeft((time) => (time >= 1 ? time - 1 : 0))
+      }
+      transformToMinSec(decrementedSeconds)
+    }, 1000)
+
+    if (timeLeft === 0 || done) {
+      setIsPlay(false)
+    }
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [decrementedSeconds, done, isPlay])
 
   return (
     <li className={liClassName}>
@@ -30,9 +68,9 @@ function TodoListItem(props) {
         <label>
           <span className="title">{label}</span>
           <span className="description">
-            <button type="button" aria-label="Play" className="icon icon-play" />
-            <button type="button" aria-label="Pause" className="icon icon-pause" />
-            {`${minutes}:${seconds}`}
+            <button type="button" aria-label="Play" onClick={() => setIsPlay(true)} className="icon   icon-play" />
+            <button type="button" aria-label="Pause" onClick={() => setIsPlay(false)} className="icon icon-pause" />
+            {`${modernTime(minutes)}:${modernTime(seconds)}`}
           </span>
           <span className="description">
             {`Created ${formatDistanceToNow(date, { includeSeconds: true }, { addSuffix: true })}`}
@@ -68,8 +106,8 @@ TodoListItem.defaultProps = {
 }
 TodoListItem.propTypes = {
   label: PropTypes.string.isRequired,
-  minutes: PropTypes.string.isRequired,
-  seconds: PropTypes.string.isRequired,
+  minutes: PropTypes.number.isRequired,
+  seconds: PropTypes.number.isRequired,
   done: PropTypes.bool,
   editing: PropTypes.bool,
   date: PropTypes.instanceOf(Date).isRequired,

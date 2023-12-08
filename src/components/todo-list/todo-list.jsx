@@ -6,15 +6,13 @@ import { TodoListItem } from '../todo-list-item'
 import './todo-list.css'
 
 function TodoList({ sortedTasksData, setTasksData }) {
-  const onToggleProperty = (tasksArr, id, property) => {
-    const newTasksArr = tasksArr.map((task) => {
+  const onToggleProperty = (tasksArr, id, property) =>
+    tasksArr.map((task) => {
       if (task.id === id) {
         return { ...task, [property]: !task[property] }
       }
       return task
     })
-    return newTasksArr
-  }
 
   const onAddEditedTask = (id, label) => {
     setTasksData((tasks) => {
@@ -51,6 +49,7 @@ function TodoList({ sortedTasksData, setTasksData }) {
     <TodoListItem
       key={taskData.id}
       {...taskData}
+      setTasksData={setTasksData}
       onDeleteItem={onDeleteItem}
       onToggleEdit={onToggleEdit}
       onToggleDone={onToggleDone}
@@ -64,7 +63,7 @@ function TodoList({ sortedTasksData, setTasksData }) {
 
 TodoList.propTypes = {
   setTasksData: PropTypes.func.isRequired,
-  sortedTasksData: PropTypes.arrayOf.isRequired,
+  sortedTasksData: PropTypes.shape.isRequired,
 }
 
 export default TodoList
