@@ -47,7 +47,7 @@ function TodoListItem(props) {
   }
 
   useEffect(() => {
-    console.log(isPlay)
+    // console.log(isPlay)
     const intervalId = setInterval(() => {
       if (isPlay && isPlay !== 'pause') {
         setTimeLeft((time) => (time >= 1 ? time - 1 : 0))
