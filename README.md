@@ -1,6 +1,9 @@
-# Link to the To-Do application to pass React Unit 1
+# Link to the To-Do application main branch
 
 [Open link to review my app](https://react-todo-app-kata.vercel.app)
+
+# Link to the To-Do application timer-branch
+[Open link to review my app](https://react-todo-app-kata-git-timerbranch-max-black-des-projects.vercel.app/?vercelToolbarCode=zxGQguLZDcGK0Fz)
 
 # Getting Started with Create React App
 
