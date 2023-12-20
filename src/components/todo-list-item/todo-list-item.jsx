@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useCallback } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import classNames from 'classnames'
 import { PropTypes } from 'prop-types'
@@ -26,7 +27,6 @@ function TodoListItem(props) {
   const totalSeconds = Number(minutes) * 60 + Number(seconds)
   const [isPlay, setIsPlay] = useState('pause')
   const [timeLeft, setTimeLeft] = useState(totalSeconds)
-  const decrementedSeconds = timeLeft
   const setUpdatedTime = (tasksData, min, sec) =>
     tasksData.map((task) => {
       if (task.id === id) {
@@ -45,14 +45,14 @@ function TodoListItem(props) {
     }
     return value
   }
+  const correctTime = useCallback(() => transformToMinSec(timeLeft), [timeLeft])
 
   useEffect(() => {
-    // console.log(isPlay)
     const intervalId = setInterval(() => {
       if (isPlay && isPlay !== 'pause') {
-        setTimeLeft((time) => (time >= 1 ? time - 1 : 0))
+        setTimeLeft((prev) => (prev >= 1 ? prev - 1 : 0))
       }
-      transformToMinSec(decrementedSeconds)
+      correctTime()
     }, 1000)
 
     if (timeLeft === 0 || done) {
@@ -61,7 +61,7 @@ function TodoListItem(props) {
     return () => {
       clearInterval(intervalId)
     }
-  }, [decrementedSeconds, done, isPlay])
+  }, [timeLeft, done, isPlay, correctTime])
 
   return (
     <li className={liClassName}>
