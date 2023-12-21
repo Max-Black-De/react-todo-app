@@ -1,9 +1,5 @@
 # Link to the To-Do application main branch
-
 [Open link to review my app](https://react-todo-app-kata.vercel.app)
-
-# Link to the To-Do application timer-branch
-[Open link to review my To-Do app with timer](https://react-todo-app-kata-git-timerbranch-max-black-des-projects.vercel.app/?vercelToolbarCode=zxGQguLZDcGK0Fz)
 
 # Link to the To-Do application with timer created with React Hook technology
 [Open link to review my To-Do application with React Hook](https://react-todo-app-kata-git-todotimerhooks-max-black-des-projects.vercel.app)
