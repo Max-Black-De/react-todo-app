@@ -25,8 +25,10 @@ function TodoListItem(props) {
 
   const liClassName = classNames({ completed: done, editing })
   const totalSeconds = Number(minutes) * 60 + Number(seconds)
+
   const [isPlay, setIsPlay] = useState('pause')
   const [timeLeft, setTimeLeft] = useState(totalSeconds)
+
   const setUpdatedTime = (tasksData, min, sec) =>
     tasksData.map((task) => {
       if (task.id === id) {
@@ -34,17 +36,20 @@ function TodoListItem(props) {
       }
       return task
     })
+
   const transformToMinSec = (result) => {
     const min = Math.trunc(result / 60)
     const sec = result - min * 60
     setTasksData((tasksData) => setUpdatedTime(tasksData, min, sec))
   }
+
   const modernTime = (value) => {
     if (value <= 9) {
       return `0${value}`
     }
     return value
   }
+
   const correctTime = useCallback(() => transformToMinSec(timeLeft), [timeLeft])
 
   useEffect(() => {
@@ -62,7 +67,6 @@ function TodoListItem(props) {
       clearInterval(intervalId)
     }
   }, [timeLeft, done, isPlay, correctTime])
-
   return (
     <li className={liClassName}>
       <div className="view">
