@@ -1,6 +1,6 @@
-# Link to the To-Do application to pass React Unit 1
+# Link to the To-Do application with timer created with React Hook technology
 
-[Open link to review my app](https://react-todo-app-kata.vercel.app)
+[Open link to review my To-Do application with React Hook](https://react-todo-app-kata-git-todotimerhooks-max-black-des-projects.vercel.app)
 
 # Getting Started with Create React App
 
